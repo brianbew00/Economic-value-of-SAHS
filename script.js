@@ -22,25 +22,37 @@ document.getElementById("calculate").addEventListener("click", function () {
     // Calculate total expenses
     const totalExpenses = childcareCost + maintenanceCost + workExpenses;
 
-    // Calculate taxes on services
-    const taxOnServices = totalExpenses * serviceTaxRate;
+    // Calculate Break-Even Income
+    const breakEvenIncome = totalExpenses / (1 - householdTaxRate);
 
-    // Calculate taxes on spouse's wages
-    const grossIncome = (totalExpenses + taxOnServices) / (1 - householdTaxRate);
-    const taxOnWages = grossIncome * householdTaxRate;
+    // Calculate Household Tax
+    const householdTax = breakEvenIncome - totalExpenses;
+
+    // Calculate Service Tax
+    const serviceTax = totalExpenses * serviceTaxRate;
+
+    // Calculate Total Tax Burden
+    const totalTaxBurden = householdTax + serviceTax;
+
+    // Debugging logs
+    console.log("Total Expenses:", totalExpenses);
+    console.log("Break-Even Income:", breakEvenIncome);
+    console.log("Household Tax:", householdTax);
+    console.log("Service Tax:", serviceTax);
+    console.log("Total Tax Burden:", totalTaxBurden);
 
     // Prepare data for bar chart
-    const labels = ["Total Expenses", "Tax on Services", "Tax on Wages"];
-    const data = [totalExpenses, taxOnServices, taxOnWages];
+    const labels = ["Break-Even Income", "Household Tax", "Service Tax", "Total Tax Burden"];
+    const data = [breakEvenIncome, householdTax, serviceTax, totalTaxBurden];
 
     renderBarChart(labels, data);
 
-    // Calculate break-even gross income for line chart
+    // Prepare data for line chart (for different household tax rates)
     const taxRates = [];
     const breakEvenIncomes = [];
     for (let rate = 0.1; rate <= 0.5; rate += 0.05) {
         taxRates.push((rate * 100).toFixed(0) + "%");
-        const income = (totalExpenses + taxOnServices) / (1 - rate);
+        const income = totalExpenses / (1 - rate);
         breakEvenIncomes.push(income.toFixed(2));
     }
 
@@ -64,8 +76,8 @@ function renderBarChart(labels, data) {
                 {
                     label: "Cost Breakdown ($)",
                     data: data,
-                    backgroundColor: ["#007BFF", "#28A745", "#FFC107"],
-                    borderColor: ["#0056b3", "#19692c", "#d39e00"],
+                    backgroundColor: ["#007BFF", "#28A745", "#FFC107", "#DC3545"],
+                    borderColor: ["#0056b3", "#19692c", "#d39e00", "#b21f2d"],
                     borderWidth: 1,
                 },
             ],
