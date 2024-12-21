@@ -17,10 +17,17 @@ document.getElementById("calculate").addEventListener("click", function () {
     // Calculate taxes on services
     const taxOnServices = totalExpenses * serviceTaxRate;
 
-    // Calculate break-even gross income
-    const breakEvenIncome = (totalExpenses + taxOnServices) / (1 - householdTaxRate);
+    // Calculate taxes on spouse's wages
+    const grossIncome = (totalExpenses + taxOnServices) / (1 - householdTaxRate);
+    const taxOnWages = grossIncome * householdTaxRate;
 
-    // Calculate tax rates for the chart
+    // Prepare data for bar chart
+    const labels = ["Total Expenses", "Tax on Services", "Tax on Wages"];
+    const data = [totalExpenses, taxOnServices, taxOnWages];
+
+    renderBarChart(labels, data);
+
+    // Calculate break-even gross income for line chart
     const taxRates = [];
     const breakEvenIncomes = [];
     for (let rate = 0.1; rate <= 0.5; rate += 0.05) {
@@ -29,26 +36,53 @@ document.getElementById("calculate").addEventListener("click", function () {
         breakEvenIncomes.push(income.toFixed(2));
     }
 
-    renderChart(taxRates, breakEvenIncomes);
-
-    // Display results
-    document.getElementById("results").innerHTML = `
-        <p>Total Expenses: $${totalExpenses.toFixed(2)}</p>
-        <p>Tax on Services: $${taxOnServices.toFixed(2)}</p>
-        <p>Break-Even Gross Income: $${breakEvenIncome.toFixed(2)}</p>
-    `;
+    renderLineChart(taxRates, breakEvenIncomes);
 });
 
-function renderChart(taxRates, breakEvenIncomes) {
-    const ctx = document.getElementById("chart").getContext("2d");
+function renderBarChart(labels, data) {
+    const ctx = document.getElementById("bar-chart").getContext("2d");
 
     // Destroy existing chart if any
-    if (window.breakEvenChart) {
-        window.breakEvenChart.destroy();
+    if (window.barChart) {
+        window.barChart.destroy();
     }
 
-    // Create the chart
-    window.breakEvenChart = new Chart(ctx, {
+    // Create the bar chart
+    window.barChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Cost Breakdown ($)",
+                    data: data,
+                    backgroundColor: ["#007BFF", "#28A745", "#FFC107"],
+                    borderColor: ["#0056b3", "#19692c", "#d39e00"],
+                    borderWidth: 1,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
+    });
+}
+
+function renderLineChart(taxRates, breakEvenIncomes) {
+    const ctx = document.getElementById("line-chart").getContext("2d");
+
+    // Destroy existing chart if any
+    if (window.lineChart) {
+        window.lineChart.destroy();
+    }
+
+    // Create the line chart
+    window.lineChart = new Chart(ctx, {
         type: "line",
         data: {
             labels: taxRates,

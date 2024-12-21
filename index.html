@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Break-Even Calculator</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -30,7 +31,10 @@
 
         <button id="calculate">Calculate</button>
 
-        <div id="results" class="results"></div>
+        <div class="charts">
+            <canvas id="bar-chart"></canvas>
+            <canvas id="line-chart"></canvas>
+        </div>
     </div>
 </body>
 </html>
