@@ -52,8 +52,7 @@ button:hover {
     background-color: #0056b3;
 }
 
-canvas {
+.results {
     margin-top: 20px;
-    width: 100%;
-    height: 300px;
+    text-align: left;
 }

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Break-Even Calculator</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -22,16 +21,16 @@
             <label for="work-expenses">Work Expenses ($):</label>
             <input type="number" id="work-expenses" value="5000">
 
-            <label for="min-tax-rate">Min Tax Rate (%):</label>
-            <input type="number" id="min-tax-rate" value="10" step="1">
+            <label for="household-tax-rate">Household Tax Rate (%):</label>
+            <input type="number" id="household-tax-rate" value="25" step="1">
 
-            <label for="max-tax-rate">Max Tax Rate (%):</label>
-            <input type="number" id="max-tax-rate" value="40" step="1">
+            <label for="service-tax-rate">Service Provider Tax Rate (%):</label>
+            <input type="number" id="service-tax-rate" value="15" step="1">
         </div>
 
         <button id="calculate">Calculate</button>
 
-        <canvas id="chart"></canvas>
+        <div id="results" class="results"></div>
     </div>
 </body>
 </html>
