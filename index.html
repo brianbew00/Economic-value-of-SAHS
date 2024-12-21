@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break-Even Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Break-Even Calculator</h1>
+        <div class="inputs">
+            <label for="childcare-cost">Childcare Cost ($):</label>
+            <input type="number" id="childcare-cost" value="50000">
+
+            <label for="maintenance-cost">Maintenance Cost ($):</label>
+            <input type="number" id="maintenance-cost" value="4000">
+
+            <label for="work-expenses">Work Expenses ($):</label>
+            <input type="number" id="work-expenses" value="5000">
+
+            <label for="min-tax-rate">Min Tax Rate (%):</label>
+            <input type="number" id="min-tax-rate" value="10" step="1">
+
+            <label for="max-tax-rate">Max Tax Rate (%):</label>
+            <input type="number" id="max-tax-rate" value="40" step="1">
+        </div>
+
+        <button id="calculate">Calculate</button>
+
+        <canvas id="chart"></canvas>
+    </div>
+</body>
+</html>
