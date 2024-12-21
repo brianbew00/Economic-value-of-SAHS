@@ -22,11 +22,11 @@ document.getElementById("calculate").addEventListener("click", function () {
     // Calculate total expenses
     const totalExpenses = childcareCost + maintenanceCost + workExpenses;
 
-    // Calculate Break-Even Income
-    const breakEvenIncome = totalExpenses / (1 - householdTaxRate);
+    // Calculate Gross Income
+    const grossIncome = totalExpenses / (1 - householdTaxRate);
 
     // Calculate Household Tax
-    const householdTax = breakEvenIncome - totalExpenses;
+    const householdTax = grossIncome - totalExpenses;
 
     // Calculate Service Tax
     const serviceTax = totalExpenses * serviceTaxRate;
@@ -36,14 +36,14 @@ document.getElementById("calculate").addEventListener("click", function () {
 
     // Debugging logs
     console.log("Total Expenses:", totalExpenses);
-    console.log("Break-Even Income:", breakEvenIncome);
+    console.log("Gross Income:", grossIncome);
     console.log("Household Tax:", householdTax);
     console.log("Service Tax:", serviceTax);
     console.log("Total Tax Burden:", totalTaxBurden);
 
     // Prepare data for bar chart
     const labels = ["Break-Even Income", "Household Tax", "Service Tax", "Total Tax Burden"];
-    const data = [breakEvenIncome, householdTax, serviceTax, totalTaxBurden];
+    const data = [grossIncome, householdTax, serviceTax, totalTaxBurden];
 
     renderBarChart(labels, data);
 
