@@ -1,12 +1,20 @@
 
 document.getElementById("calculate").addEventListener("click", function () {
+    // Fetch input values
     const childcareCost = parseFloat(document.getElementById("childcare-cost").value);
     const maintenanceCost = parseFloat(document.getElementById("maintenance-cost").value);
     const workExpenses = parseFloat(document.getElementById("work-expenses").value);
     const householdTaxRate = parseFloat(document.getElementById("household-tax-rate").value) / 100;
     const serviceTaxRate = parseFloat(document.getElementById("service-tax-rate").value) / 100;
 
-    if (isNaN(childcareCost) || isNaN(maintenanceCost) || isNaN(workExpenses) || isNaN(householdTaxRate) || isNaN(serviceTaxRate)) {
+    // Validate input values
+    if (
+        isNaN(childcareCost) ||
+        isNaN(maintenanceCost) ||
+        isNaN(workExpenses) ||
+        isNaN(householdTaxRate) ||
+        isNaN(serviceTaxRate)
+    ) {
         alert("Please fill in all fields with valid numbers.");
         return;
     }
@@ -96,14 +104,6 @@ function renderLineChart(taxRates, breakEvenIncomes) {
                     fill: true,
                 },
             ],
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
-            },
         },
     });
 }
